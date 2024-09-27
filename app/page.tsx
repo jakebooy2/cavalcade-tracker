@@ -75,7 +75,7 @@ const CartoonivalTracker = () => {
                     announceDate.setHours(announceDate.getHours() + 1)
                 }
                 setCheckBackTime(checkBackString(date, announceDate))
-            }else if(minute >= 25 && minute < 30){
+            }else if(minute >= 26 && minute < 30){
                 // In Transit Period
                 if(!(apiStatus === "in-transit" && apiStreet != "")){
                     // call ttr update for an update
