@@ -188,6 +188,14 @@
   backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.5);
 }
+@media screen and (max-width: 700px) {
+  .tokenTracker .tokenTrackerImage {
+    display: none;
+  }
+  .tokenTracker .tokenTrackerContent {
+    width: 100% !important;
+  }
+}
 .tokenTracker .tokenTrackerImage {
   position: absolute;
   top: -100px;
@@ -209,10 +217,52 @@
   color: #e43d30;
   text-shadow: 2px 2px 2px rgba(11, 11, 11, 0.2);
 }
+.tokenTracker .tokenTrackerContent h1.pop {
+  -webkit-animation: popTokenText 0.6s ease-in-out;
+}
 .tokenTracker .tokenTrackerContent p {
   font-family: "ImpressBT", sans-serif;
   font-size: 20px;
   color: #091c73;
+}
+.tokenTracker .tokenTrackerContent .tokenAnimationContainer {
+  height: 200px;
+  width: 128px;
+  position: relative;
+  margin-top: -72px;
+}
+.tokenTracker .tokenTrackerContent .tokenAnimationContainer .token {
+  opacity: 0;
+  top: 0;
+  left: 25px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url("/assets/ttr/token.png");
+  background-size: 50px;
+  transition: opacity 0.2s ease-in-out, top 0.5s ease-in-out;
+  -webkit-filter: drop-shadow(2px 2px 2px rgba(17, 12, 46, 0.05));
+  filter: drop-shadow(2px 2px 2px rgba(17, 12, 46, 0.05));
+}
+.tokenTracker .tokenTrackerContent .tokenAnimationContainer .token.fade {
+  opacity: 1;
+}
+.tokenTracker .tokenTrackerContent .tokenAnimationContainer .token.drop {
+  top: 145px;
+}
+.tokenTracker .tokenTrackerContent .tokenAnimationContainer .tokenJar {
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  background: url("/assets/ttr/tokenJar.png");
+  background-size: 100px;
+  transform: scale(1);
+  -webkit-filter: drop-shadow(2px 2px 2px rgba(11, 11, 11, 0.6));
+  filter: drop-shadow(2px 2px 2px rgba(11, 11, 11, 0.6));
+}
+.tokenTracker .tokenTrackerContent .tokenAnimationContainer .tokenJar.pop {
+  -webkit-animation: popTokenJar 0.6s ease-in-out;
 }
 
 .footer {
@@ -227,47 +277,23 @@
   color: #111;
 }
 
-.tokenAnimationContainer {
-  height: 256px;
-  width: 128px;
-  position: relative;
-}
-.tokenAnimationContainer .token {
-  opacity: 0;
-  top: 0;
-  left: 35px;
-  position: absolute;
-  width: 58px;
-  height: 58px;
-  background: url("/assets/ttr/token.png");
-  background-size: 58px;
-  transition: opacity 0.2s ease-in-out, top 0.5s ease-in-out;
-}
-.tokenAnimationContainer .token.fade {
-  opacity: 1;
-}
-.tokenAnimationContainer .token.drop {
-  top: 175px;
-}
-.tokenAnimationContainer .tokenJar {
-  position: absolute;
-  bottom: 0;
-  width: 128px;
-  height: 128px;
-  background: url("/assets/ttr/tokenJar.png");
-  background-size: 128px;
-  transform: scale(1);
-}
-.tokenAnimationContainer .tokenJar.pop {
-  -webkit-animation: popTokenJar 0.6s ease-in-out;
-}
-
 @keyframes popTokenJar {
   0% {
     transform: scale(1);
   }
   50% {
     transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes popTokenText {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
   }
   100% {
     transform: scale(1);

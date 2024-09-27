@@ -207,6 +207,15 @@
     backdrop-filter: blur(8px);
     background: rgba(white, .5);
 
+    @media screen and (max-width: 700px) {
+        .tokenTrackerImage{
+            display: none;
+        }
+        .tokenTrackerContent{
+            width: 100% !important;
+        }
+    }
+
     .tokenTrackerImage{
         position: absolute;
         top: -100px;
@@ -231,12 +240,61 @@
             margin-bottom: -10px;
             color: #e43d30;
             text-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+
+            &.pop {
+                -webkit-animation: popTokenText 0.6s ease-in-out;
+            }
         }
 
         p{
             font-family: "ImpressBT", sans-serif;
             font-size: 20px;
             color: #091c73;
+        }
+
+        .tokenAnimationContainer{
+            height: 200px;
+            width: 128px;
+            position: relative;
+            margin-top: -72px;
+
+            .token{
+                opacity: 0;
+                top: 0;
+                left: calc((100px - 50px) / 2);
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background: url("/assets/ttr/token.png");
+                background-size: 50px;
+                transition: opacity .2s ease-in-out, top .5s ease-in-out;
+                -webkit-filter: drop-shadow(2px 2px 2px rgba(17, 12, 46, 0.05));
+                filter: drop-shadow(2px 2px 2px rgba(17, 12, 46, 0.05));
+
+                &.fade{
+                    opacity: 1;
+                }
+
+                &.drop{
+                    top: 145px;
+                }
+            }
+
+            .tokenJar{
+                position: absolute;
+                bottom: 0;
+                width: 100px;
+                height: 100px;
+                background: url("/assets/ttr/tokenJar.png");
+                background-size: 100px;
+                transform: scale(1);
+                -webkit-filter: drop-shadow(2px 2px 2px rgba(11, 11, 11, .6));
+                filter: drop-shadow(2px 2px 2px rgba(11, 11, 11, .6));
+
+                &.pop {
+                    -webkit-animation: popTokenJar 0.6s ease-in-out;
+                }
+            }
         }
     }
 }
@@ -254,45 +312,6 @@
     }
 }
 
-.tokenAnimationContainer{
-    height: 256px;
-    width: 128px;
-    position: relative;
-
-    .token{
-        opacity: 0;
-        top: 0;
-        left: calc((128px - 58px) / 2);
-        position: absolute;
-        width: 58px;
-        height: 58px;
-        background: url("/assets/ttr/token.png");
-        background-size: 58px;
-        transition: opacity .2s ease-in-out, top .5s ease-in-out;
-
-        &.fade{
-            opacity: 1;
-        }
-
-        &.drop{
-            top: 175px;
-        }
-    }
-
-    .tokenJar{
-        position: absolute;
-        bottom: 0;
-        width: 128px;
-        height: 128px;
-        background: url("/assets/ttr/tokenJar.png");
-        background-size: 128px;
-        transform: scale(1);
-
-        &.pop {
-            -webkit-animation: popTokenJar 0.6s ease-in-out;
-        }
-    }
-}
 
 @keyframes popTokenJar {
     0% {
@@ -300,6 +319,18 @@
     }
     50%{
         transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes popTokenText {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
     }
     100% {
         transform: scale(1);

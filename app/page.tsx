@@ -4,28 +4,6 @@ import {useEffect, useState} from "react";
 
 export default function Page() {
 
-    const [tokenJarPop, setTokenJarPop] = useState(false)
-    const [coinDrop, setCoinDrop] = useState(false)
-    const [coinOpacity, setCoinOpacity] = useState(false)
-
-    const popTokenJar = () => {
-        setCoinDrop(true)
-        setCoinOpacity(true)
-
-        setTimeout(() => {
-            setCoinOpacity(false)
-            setTokenJarPop(true)
-
-            setTimeout(() => {
-                setCoinDrop(false)
-            }, 500);
-
-            setTimeout(() => {
-                setTokenJarPop(false)
-            }, 1000);
-        }, 300);
-    }
-
     return (
         <div>
             <div className={styles.scrollingBackgroundContainer}>
@@ -36,18 +14,8 @@ export default function Page() {
                             <img className={styles.cartoonivalLogo} src="/assets/ttr/cartoonival_logo.png" />
                         </center>
                         <h1 className={styles.pageTitle}>Cavalcade Tracker</h1>
-                        <CartoonivalTracker />
+                        {/*<CartoonivalTracker />*/}
 
-                        <br />
-                        <br />
-                        <h1 className={styles.pageTitle}>
-                            Token Animation Test
-                        </h1>
-                        <div className={styles.tokenAnimationContainer} onClick={() => popTokenJar()}>
-                            <div className={`${styles.token} ${coinDrop ? styles.drop : ''} ${coinOpacity ? styles.fade : ''}`}></div>
-                            <div className={`${styles.tokenJar} ${tokenJarPop ? styles.pop : ''}`}></div>
-                        </div>
-                        <br />
                         <br />
 
                         <RiggyTokenTracker />
@@ -274,7 +242,12 @@ const CartoonivalTracker = () => {
 
 const RiggyTokenTracker = () => {
 
-    const [tokens, setTokens] = useState(-1)
+    const [tokenCount, setTokenCount] = useState(1000)
+    const [tokens, setTokens] = useState(1000)
+
+    const [tokenJarPop, setTokenJarPop] = useState(false)
+    const [coinDrop, setCoinDrop] = useState(false)
+    const [coinOpacity, setCoinOpacity] = useState(false)
 
     useEffect(() => {
         const callForTokens = async () => {
@@ -300,6 +273,30 @@ const RiggyTokenTracker = () => {
         }, 1000)
     }, []);
 
+    // play the token animation and update the counter
+    useEffect(() => {
+        if(tokens <= tokenCount)
+            return
+
+        setCoinDrop(true)
+        setCoinOpacity(true)
+
+        setTimeout(() => {
+            setCoinOpacity(false)
+            setTokenJarPop(true)
+            setTokenCount(tokens)
+
+            setTimeout(() => {
+                setCoinDrop(false)
+            }, 500); // 500ms animation to fade coin out as it falls
+
+            setTimeout(() => {
+                setTokenJarPop(false)
+            }, 1000); // 1000ms timeout to remove jar pop animation
+        }, 300); // 300ms timeout to start jar pop animation
+
+    }, [tokens, tokenCount, setTokenCount]);
+
     return(
         <div className={styles.tokenTracker}>
             <div className={styles.tokenTrackerImage}>
@@ -307,7 +304,13 @@ const RiggyTokenTracker = () => {
             </div>
             <div className={styles.tokenTrackerContent}>
                 <div>
-                    <h1>{tokens == -1 ? 'Loading...' : numberWithCommas(tokens)}</h1>
+                    <div style={{display: 'flex', alignItems: "center"}}>
+                        <div className={styles.tokenAnimationContainer}>
+                            <div className={`${styles.token} ${coinDrop ? styles.drop : ''} ${coinOpacity ? styles.fade : ''}`}></div>
+                            <div className={`${styles.tokenJar} ${tokenJarPop ? styles.pop : ''}`}></div>
+                        </div>
+                        <h1 className={tokenJarPop ? styles.pop : ''}>{tokenCount == -1 ? 'Loading...' : numberWithCommas(tokenCount)}</h1>
+                    </div>
                     <p>{tokens != -1 && 'tokens have been donated to Riggy Marole!'}</p>
                 </div>
             </div>
