@@ -25,7 +25,7 @@ export default function Page() {
                         <div className={styles.footer}>
                             This website is not affiliated with <a href="https://toontownrewritten.com/">Toontown Rewritten</a>,<br />any assets used are owned by them.
                             <br /><br />
-                            &copy;2024 track-your-town.info
+                            &copy;2024 TownTracker
                             <br /><br />
                             <a href="https://github.com/jakebooy2/cavalcade-tracker"><i className="fa-brands fa-github"></i> View on GitHub</a>
                         </div>
