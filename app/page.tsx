@@ -1,9 +1,8 @@
 'use client'
 import styles from "../styles/style.module.css";
 import {useEffect, useState} from "react";
-export const revalidate = 30
-export default function Page() {
 
+export default function Page() {
     return (
         <div>
             <div className={styles.scrollingBackgroundContainer}>
@@ -26,7 +25,7 @@ export default function Page() {
                         <div className={styles.footer}>
                             This website is not affiliated with <a href="https://toontownrewritten.com/">Toontown Rewritten</a>,<br />any assets used are owned by them.
                             <br /><br />
-                            <a href=""><i className="fa-brands fa-github"></i> View on GitHub</a>
+                            <a href="https://github.com/jakebooy2/cavalcade-tracker"><i className="fa-brands fa-github"></i> View on GitHub</a>
                         </div>
                     </div>
                 </div>
