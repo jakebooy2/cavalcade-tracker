@@ -14,7 +14,7 @@ export default function Page() {
                             <img className={styles.cartoonivalLogo} src="/assets/ttr/cartoonival_logo.png" />
                         </center>
                         <h1 className={styles.pageTitle}>Cavalcade Tracker</h1>
-                        {/*<CartoonivalTracker />*/}
+                        <CartoonivalTracker />
 
                         <br />
 
