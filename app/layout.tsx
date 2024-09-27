@@ -1,3 +1,4 @@
+import styles from "../styles/style.module.css";
 export default function RootLayout({
   children,
 }: {
@@ -5,7 +6,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+        <title>Cavalcade Tracker</title>
+      <body className={styles.body}>
+          <script src="https://kit.fontawesome.com/0f53078f08.js" crossOrigin="anonymous"></script>
+          {children}
+      </body>
     </html>
   );
 }

@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+@font-face {
+    font-family: Minnie;
+    src: url(/assets/font/Minnie.TTF);
+}
+
+@font-face {
+    font-family: ImpressBT;
+    src: url(/assets/font/ImpressBT.ttf);
+}
+
+.body{
+    background: #f3f3f3;
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.scrollingBackgroundContainer{
+    overflow: hidden;
+    width: 100vw;
+
+    .scrollingBackground{
+        background: url("/assets/image/gags-light.png") repeat;
+        -webkit-animation: bgScroll 400s linear infinite;
+        animation: bgScroll 400s linear infinite;
+        height: 100vh;
+        width: 100vw;
+        background-size: 307px 307px;
+        position: relative;
+    }
+}
+
+@keyframes bgScroll{
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 1000% 1000%;
+    }
+}
+
+@keyframes slide {
+    0% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(-150vw); /* The image width */
+    }
+}
+
+
+.pageContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.container{
+    max-width: 725px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+.pageTitle{
+    font-family: "Minnie", sans-serif;
+    text-align: center;
+    color: #5700d9;
+    font-size: 42px;
+    text-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+}
+
+.cartoonivalAnnouncer{
+    backdrop-filter: blur(8px);
+    background: rgba(white, .5);
+    border-radius: 12px;
+    border: 4px solid #091c73;
+    box-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+    display: block;
+    position: relative;
+
+    .imageContainer{
+        position: relative;
+        display: block;
+
+        img{
+            width: 100%;
+            max-height: 358.5px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .locationName{
+            position: absolute;
+            bottom: 40px;
+            right: 25px;
+            height: 50px;
+            background: #5700d9;
+            border: 3px solid white;
+            color: white;
+            border-radius: 30px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "ImpressBT", sans-serif;
+            font-size: 28px;
+            box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 80px 0px;
+        }
+    }
+
+    .locationString{
+        font-size: 42px;
+        font-family: "Minnie", sans-serif;
+        text-align: center;
+        color: #5700d9;
+        text-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+
+        span{
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        p{
+            font-family: "ImpressBT", sans-serif;
+            color: #111;
+            font-size: 20px;
+            text-shadow: none;
+            margin-bottom: 0px;
+            margin-top: -5px;
+        }
+    }
+
+    .timeString{
+        font-family: "ImpressBT", sans-serif;
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 25px;
+
+        i{
+            color: rgba(11, 11, 11, .4);
+            margin-right: 5px;
+        }
+    }
+}
+
+.discordBox{
+    border-radius: 12px;
+    border: 4px solid #091c73;
+    box-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+    position: relative;
+    backdrop-filter: blur(8px);
+    background: rgba(white, .5);
+    margin-top: 75px;
+    text-align: center;
+    padding: 10px 0;
+
+    h1{
+        font-family: "Minnie", sans-serif;
+        text-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+        color: #5865F2;
+    }
+
+    p{
+        font-family: "ImpressBT", sans-serif;
+        font-size: 20px;
+        margin-top: -10px;
+    }
+
+    .discordButton{
+        padding: 10px 15px;
+        border-radius: 4px;
+        color: white;
+        background: #5865F2;
+        text-decoration: none;
+        font-weight: bold;
+        transition: .2s ease-in-out;
+        margin-bottom: 10px;
+        display: inline-block;
+        box-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+
+        &:hover{
+            background: darken(#5865F2, 5%);
+            box-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+        }
+    }
+}
+
+.tokenTracker{
+    border-radius: 12px;
+    border: 4px solid #091c73;
+    box-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+    position: relative;
+    height: 220px;
+    margin-top: 100px;
+    backdrop-filter: blur(8px);
+    background: rgba(white, .5);
+
+    .tokenTrackerImage{
+        position: absolute;
+        top: -100px;
+        left: -50px;
+    }
+
+    img{
+    }
+
+    .tokenTrackerContent{
+        width: calc(100% - 120px);
+        height: 210px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+
+        h1{
+            font-size: 52px;
+            font-family: "Minnie", sans-serif;
+            margin-bottom: -10px;
+            color: #e43d30;
+            text-shadow: 2px 2px 2px rgba(11, 11, 11, .2);
+        }
+
+        p{
+            font-family: "ImpressBT", sans-serif;
+            font-size: 20px;
+            color: #091c73;
+        }
+    }
+}
+
+.footer{
+    margin-top: 75px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #111;
+    font-family: "ImpressBT", sans-serif;
+
+    a{
+        color: #111;
+    }
+}
+
+
