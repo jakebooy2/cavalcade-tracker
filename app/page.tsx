@@ -56,7 +56,7 @@ const CartoonivalTracker = () => {
         // cannot be accessed during a setInterval() request
         let apiStatus = ""
         let apiStreet = ""
-        let lastApiCall = null
+        let lastApiCall: any = -1
 
         setInterval(() => {
             const date = new Date();
@@ -80,7 +80,7 @@ const CartoonivalTracker = () => {
                 if(!(apiStatus === "in-transit" && apiStreet != "")){
                     // call ttr update for an update
                     // 5 second cache
-                    if(lastApiCall == null || (new Date() - lastApiCall) > (5*1000)) {
+                    if(lastApiCall == null || (Date.now() - lastApiCall) > (5*1000)) {
                         callForCavalcade().then((json) => {
                             if (json == "null" || json == null) {
                                 setStatus("error")
@@ -93,7 +93,7 @@ const CartoonivalTracker = () => {
                                     setStreetLocation(json.paradeLocationString)
                                 }
                             }
-                            lastApiCall = new Date()
+                            lastApiCall = Date.now()
                         })
                     }
                 }
@@ -114,7 +114,7 @@ const CartoonivalTracker = () => {
                 } else {
                     // call ttr update for an update
                     // 20 second cache
-                    if (lastApiCall == null || (new Date() - lastApiCall) > (20 * 1000)) {
+                    if (lastApiCall == null || (Date.now() - lastApiCall) > (20 * 1000)) {
                         callForCavalcade().then((json) => {
                             if (json == "null" || json == null) {
                                 setStatus("error")
@@ -157,7 +157,7 @@ const CartoonivalTracker = () => {
                                     setStreetLocation(json.paradeLocationString)
                                 }
                             }
-                            lastApiCall = new Date()
+                            lastApiCall = Date.now()
                         })
                     }
                 }
@@ -213,24 +213,24 @@ const CartoonivalTracker = () => {
     return(
         <div className={styles.cartoonivalAnnouncer}>
             <div className={styles.imageContainer}>
-                <img src={parseStreetLocation(streetLocation).image} />
+                <img src={streetLocation == null ? "/assets/ttr/cartoonival-carousel.webp" : parseStreetLocation(streetLocation).image} />
                 <div className={styles.locationName}>
-                    {parseStreetLocation(streetLocation).playground}
+                    {streetLocation == null ? "/assets/ttr/cartoonival-carousel.webp" : parseStreetLocation(streetLocation).playground}
                 </div>
             </div>
 
             <div className={styles.locationString} style={status == "active" ? {marginBottom: '15px'} : {marginBottom: '5px'}}>
                 {status == "active" ? <div>
                     <p>The Cavalcade is currently at</p>
-                    {streetLocation}
+                    {streetLocation && streetLocation}
                 </div> : <div>
                     <p>The Cavalcade is on it's way to</p>
-                    {streetLocation}
+                    {streetLocation && streetLocation}
                 </div> }
             </div>
 
             {(status == "in-transit" && checkBackTime != "") && <div className={styles.timeString}>
-                <i class="fa-solid fa-clock"></i> The parade starts in {checkBackTime}!
+                <i className="fa-solid fa-clock"></i> The parade starts in {checkBackTime}!
             </div>}
         </div>
     )
@@ -250,15 +250,15 @@ const RiggyTokenTracker = () => {
             return await response.json()
         }
 
-        let lastApiCall = null
+        let lastApiCall: any = null
 
         setInterval(() => {
             // Call for the token count
             // 30 second cache
-            if (lastApiCall == null || (new Date() - lastApiCall) > (30 * 1000)) {
+            if (lastApiCall == null || (Date.now() - lastApiCall) > (30 * 1000)) {
                 callForTokens().then((json) => {
                     setTokens(json.tokensDonated)
-                    lastApiCall = new Date()
+                    lastApiCall = Date.now()
                 })
             }
         }, 1000)
@@ -279,7 +279,7 @@ const RiggyTokenTracker = () => {
     )
 }
 
-const parseStreetLocation = (street) => {
+const parseStreetLocation = (street?: string) => {
     switch(street){
         case "Punchline Place":
         case "Loopy Lane":
@@ -337,7 +337,7 @@ const parseStreetLocation = (street) => {
     }
 }
 
-const checkBackString = (beforeDate, afterDate) => {
+const checkBackString = (beforeDate: any, afterDate: any) => {
     if(afterDate - beforeDate <= 0)
         return ""
 
@@ -362,7 +362,7 @@ const checkBackString = (beforeDate, afterDate) => {
     return `${minuteString} ${secondString}`
 }
 
-const getDifferenceInTime = (beforeDate, afterDate) => {
+const getDifferenceInTime = (beforeDate: any, afterDate: any) => {
     let delta = Math.abs(afterDate - beforeDate) / 1000;
     const days = Math.floor(delta / 86400);
     delta -= days * 86400;
@@ -380,6 +380,6 @@ const getDifferenceInTime = (beforeDate, afterDate) => {
     }
 }
 
-const numberWithCommas = (x) => {
+const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
