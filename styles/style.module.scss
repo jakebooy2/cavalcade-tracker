@@ -18,6 +18,11 @@
     margin: 0;
 }
 
+.cartoonivalLogo{
+    max-width: 400px;
+    margin-bottom: -25px;
+}
+
 .scrollingBackgroundContainer{
     overflow: hidden;
     width: 100vw;
@@ -249,4 +254,54 @@
     }
 }
 
+.tokenAnimationContainer{
+    height: 256px;
+    width: 128px;
+    position: relative;
 
+    .token{
+        opacity: 0;
+        top: 0;
+        left: calc((128px - 58px) / 2);
+        position: absolute;
+        width: 58px;
+        height: 58px;
+        background: url("/assets/ttr/token.png");
+        background-size: 58px;
+        transition: opacity .2s ease-in-out, top .5s ease-in-out;
+
+        &.fade{
+            opacity: 1;
+        }
+
+        &.drop{
+            top: 175px;
+        }
+    }
+
+    .tokenJar{
+        position: absolute;
+        bottom: 0;
+        width: 128px;
+        height: 128px;
+        background: url("/assets/ttr/tokenJar.png");
+        background-size: 128px;
+        transform: scale(1);
+
+        &.pop {
+            -webkit-animation: popTokenJar 0.6s ease-in-out;
+        }
+    }
+}
+
+@keyframes popTokenJar {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

@@ -3,15 +3,51 @@ import styles from "../styles/style.module.css";
 import {useEffect, useState} from "react";
 
 export default function Page() {
+
+    const [tokenJarPop, setTokenJarPop] = useState(false)
+    const [coinDrop, setCoinDrop] = useState(false)
+    const [coinOpacity, setCoinOpacity] = useState(false)
+
+    const popTokenJar = () => {
+        setCoinDrop(true)
+        setCoinOpacity(true)
+
+        setTimeout(() => {
+            setCoinOpacity(false)
+            setTokenJarPop(true)
+
+            setTimeout(() => {
+                setCoinDrop(false)
+            }, 500);
+
+            setTimeout(() => {
+                setTokenJarPop(false)
+            }, 1000);
+        }, 300);
+    }
+
     return (
         <div>
             <div className={styles.scrollingBackgroundContainer}>
                 <div className={styles.scrollingBackground}></div>
                 <div className={styles.pageContainer}>
                     <div className={styles.container}>
+                        <center>
+                            <img className={styles.cartoonivalLogo} src="/assets/ttr/cartoonival_logo.png" />
+                        </center>
                         <h1 className={styles.pageTitle}>Cavalcade Tracker</h1>
                         <CartoonivalTracker />
 
+                        <br />
+                        <br />
+                        <h1 className={styles.pageTitle}>
+                            Token Animation Test
+                        </h1>
+                        <div className={styles.tokenAnimationContainer} onClick={() => popTokenJar()}>
+                            <div className={`${styles.token} ${coinDrop ? styles.drop : ''} ${coinOpacity ? styles.fade : ''}`}></div>
+                            <div className={`${styles.tokenJar} ${tokenJarPop ? styles.pop : ''}`}></div>
+                        </div>
+                        <br />
                         <br />
 
                         <RiggyTokenTracker />
@@ -169,7 +205,7 @@ const CartoonivalTracker = () => {
         return(
             <div className={styles.cartoonivalAnnouncer}>
                 <div className={styles.imageContainer}>
-                    <img src="/assets/ttr/cartoonival-carousel.webp" />
+                    <img src="/assets/ttr/cartoonival-icon.png" />
                 </div>
 
                 <div className={styles.locationString} style={{marginBottom: '15px'}}>
@@ -183,7 +219,7 @@ const CartoonivalTracker = () => {
         return(
             <div className={styles.cartoonivalAnnouncer}>
                 <div className={styles.imageContainer}>
-                    <img src="/assets/ttr/cartoonival-carousel.webp" />
+                    <img src="/assets/ttr/cartoonival-icon.png" />
                 </div>
 
                 <div className={styles.locationString} style={{marginBottom: '25px'}}>
@@ -197,7 +233,7 @@ const CartoonivalTracker = () => {
         return(
             <div className={styles.cartoonivalAnnouncer}>
                 <div className={styles.imageContainer}>
-                    <img src="/assets/ttr/cartoonival-carousel.webp" />
+                    <img src="/assets/ttr/cartoonival-icon.png" />
                 </div>
 
                 <div className={styles.locationString}>
@@ -213,9 +249,9 @@ const CartoonivalTracker = () => {
     return(
         <div className={styles.cartoonivalAnnouncer}>
             <div className={styles.imageContainer}>
-                <img src={streetLocation == null ? "/assets/ttr/cartoonival-carousel.webp" : parseStreetLocation(streetLocation).image} />
+                <img src={streetLocation == null ? "/assets/ttr/cartoonival-icon.png" : parseStreetLocation(streetLocation).image} />
                 <div className={styles.locationName}>
-                    {streetLocation == null ? "/assets/ttr/cartoonival-carousel.webp" : parseStreetLocation(streetLocation).playground}
+                    {streetLocation == null ? "/assets/ttr/cartoonival-icon.png" : parseStreetLocation(streetLocation).playground}
                 </div>
             </div>
 
@@ -267,7 +303,7 @@ const RiggyTokenTracker = () => {
     return(
         <div className={styles.tokenTracker}>
             <div className={styles.tokenTrackerImage}>
-                <img src="/assets/ttr/riggy.webp" />
+                <img src="/assets/ttr/riggy.png" width="250" height="340" />
             </div>
             <div className={styles.tokenTrackerContent}>
                 <div>
