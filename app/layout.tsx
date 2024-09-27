@@ -1,4 +1,11 @@
 import styles from "../styles/style.module.css";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'Toontown Rewritten Cavalcade Tracker',
+    description: 'Track the Cavalcade with this easy to use website!',
+}
+
 export default function RootLayout({
   children,
 }: {

@@ -25,6 +25,8 @@ export default function Page() {
                         <div className={styles.footer}>
                             This website is not affiliated with <a href="https://toontownrewritten.com/">Toontown Rewritten</a>,<br />any assets used are owned by them.
                             <br /><br />
+                            &copy;2024 track-your-town.info
+                            <br /><br />
                             <a href="https://github.com/jakebooy2/cavalcade-tracker"><i className="fa-brands fa-github"></i> View on GitHub</a>
                         </div>
                     </div>
@@ -125,12 +127,28 @@ const CartoonivalTracker = () => {
                                     apiStreet = ""
                                     setStatus("recharging")
                                     setStreetLocation(null)
+
+                                    const announceDate = new Date()
+                                    announceDate.setMinutes(26)
+                                    announceDate.setSeconds(0)
+                                    if(minute >= 40){
+                                        announceDate.setHours(announceDate.getHours() + 1)
+                                    }
+                                    setCheckBackTime(checkBackString(date, announceDate))
                                 }
                                 if(json.paradeStatus == "in-transit" && apiStatus !== "in-transit"){
                                     apiStatus = "in-transit"
                                     apiStreet = json.paradeLocationString
                                     setStatus("in-transit")
                                     setStreetLocation(json.paradeLocationString)
+
+                                    const announceDate = new Date()
+                                    announceDate.setMinutes(30)
+                                    announceDate.setSeconds(0)
+                                    if(minute >= 40){
+                                        announceDate.setHours(announceDate.getHours() + 1)
+                                    }
+                                    setCheckBackTime(checkBackString(date, announceDate))
                                 }
                                 if(json.paradeStatus == "active" && apiStatus !== "active"){
                                     apiStatus = "active"
@@ -168,8 +186,8 @@ const CartoonivalTracker = () => {
                     <img src="/assets/ttr/cartoonival-carousel.webp" />
                 </div>
 
-                <div className={styles.locationString} style={{marginBottom: '15px'}}>
-                    <span>Loading...</span>
+                <div className={styles.locationString} style={{marginBottom: '25px'}}>
+                    <span style={{fontSize: '28px'}}>Waiting for the TTR API to update...</span>
                 </div>
             </div>
         )
@@ -185,9 +203,9 @@ const CartoonivalTracker = () => {
                 <div className={styles.locationString}>
                     <span>The Cavalcade is recharging!</span>
                 </div>
-                <div className={styles.timeString}>
+                {checkBackTime != "" && <div className={styles.timeString}>
                     <i className="fa-solid fa-rotate fa-spin"></i> Check back in {checkBackTime}
-                </div>
+                </div>}
             </div>
         )
     }
@@ -201,7 +219,7 @@ const CartoonivalTracker = () => {
                 </div>
             </div>
 
-            <div className={styles.locationString} style={{marginBottom: '15px'}}>
+            <div className={styles.locationString} style={status == "active" ? {marginBottom: '15px'} : {marginBottom: '5px'}}>
                 {status == "active" ? <div>
                     <p>The Cavalcade is currently at</p>
                     {streetLocation}
@@ -211,7 +229,7 @@ const CartoonivalTracker = () => {
                 </div> }
             </div>
 
-            {status == "in-transit" && <div className={styles.timeString}>
+            {(status == "in-transit" && checkBackTime != "") && <div className={styles.timeString}>
                 <i class="fa-solid fa-clock"></i> The parade starts in {checkBackTime}!
             </div>}
         </div>
@@ -320,8 +338,10 @@ const parseStreetLocation = (street) => {
 }
 
 const checkBackString = (beforeDate, afterDate) => {
-    const dateDifference =getDifferenceInTime(beforeDate, afterDate)
-    console.log(dateDifference)
+    if(afterDate - beforeDate <= 0)
+        return ""
+
+    const dateDifference = getDifferenceInTime(beforeDate, afterDate)
 
     let minuteString
     if(dateDifference.minutes == 0){
