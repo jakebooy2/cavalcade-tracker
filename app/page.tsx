@@ -242,8 +242,8 @@ const CartoonivalTracker = () => {
 
 const RiggyTokenTracker = () => {
 
-    const [tokenCount, setTokenCount] = useState(1000)
-    const [tokens, setTokens] = useState(1000)
+    const [tokenCount, setTokenCount] = useState(-1)
+    const [tokens, setTokens] = useState(-1)
 
     const [tokenJarPop, setTokenJarPop] = useState(false)
     const [coinDrop, setCoinDrop] = useState(false)
@@ -304,14 +304,16 @@ const RiggyTokenTracker = () => {
             </div>
             <div className={styles.tokenTrackerContent}>
                 <div>
-                    <div style={{display: 'flex', alignItems: "center"}}>
-                        <div className={styles.tokenAnimationContainer}>
-                            <div className={`${styles.token} ${coinDrop ? styles.drop : ''} ${coinOpacity ? styles.fade : ''}`}></div>
-                            <div className={`${styles.tokenJar} ${tokenJarPop ? styles.pop : ''}`}></div>
+                    <div className={styles.tokenCounterFlex}>
+                        <div className={styles.tokenCounterContainer}>
+                            <div className={styles.tokenAnimationContainer}>
+                                <div className={`${styles.token} ${coinDrop ? styles.drop : ''} ${coinOpacity ? styles.fade : ''}`}></div>
+                                <div className={`${styles.tokenJar} ${tokenJarPop ? styles.pop : ''}`}></div>
+                            </div>
                         </div>
                         <h1 className={tokenJarPop ? styles.pop : ''}>{tokenCount == -1 ? 'Loading...' : numberWithCommas(tokenCount)}</h1>
                     </div>
-                    <p>{tokens != -1 && 'tokens have been donated to Riggy Marole!'}</p>
+                    <p>{'tokens have been donated to Riggy Marole!'}</p>
                 </div>
             </div>
         </div>

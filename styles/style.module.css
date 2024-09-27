@@ -189,6 +189,9 @@
   background: rgba(255, 255, 255, 0.5);
 }
 @media screen and (max-width: 700px) {
+  .tokenTracker {
+    height: 300px;
+  }
   .tokenTracker .tokenTrackerImage {
     display: none;
   }
@@ -224,6 +227,29 @@
   font-family: "ImpressBT", sans-serif;
   font-size: 20px;
   color: #091c73;
+  max-width: 100%;
+  text-align: center;
+  word-wrap: normal;
+  margin: 20px auto;
+}
+.tokenTracker .tokenTrackerContent .tokenCounterFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tokenTracker .tokenTrackerContent .tokenCounterFlex .tokenCounterContainer {
+  margin-left: 0;
+}
+@media screen and (max-width: 700px) {
+  .tokenTracker .tokenTrackerContent .tokenCounterFlex {
+    display: block;
+  }
+  .tokenTracker .tokenTrackerContent .tokenCounterFlex .tokenCounterContainer {
+    margin-left: 25px;
+  }
+  .tokenTracker .tokenTrackerContent .tokenCounterFlex .tokenAnimationContainer {
+    margin: 0 auto;
+  }
 }
 .tokenTracker .tokenTrackerContent .tokenAnimationContainer {
   height: 200px;

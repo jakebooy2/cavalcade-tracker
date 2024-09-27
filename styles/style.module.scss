@@ -208,6 +208,7 @@
     background: rgba(white, .5);
 
     @media screen and (max-width: 700px) {
+        height: 300px;
         .tokenTrackerImage{
             display: none;
         }
@@ -250,6 +251,32 @@
             font-family: "ImpressBT", sans-serif;
             font-size: 20px;
             color: #091c73;
+            max-width: 100%;
+            text-align: center;
+            word-wrap: normal;
+            margin: 20px auto;
+        }
+
+        .tokenCounterFlex{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .tokenCounterContainer{
+                margin-left: 0;
+            }
+
+            @media screen and (max-width: 700px) {
+                display: block;
+
+                .tokenCounterContainer{
+                    margin-left: 25px;
+                }
+
+                .tokenAnimationContainer{
+                    margin: 0 auto;
+                }
+            }
         }
 
         .tokenAnimationContainer{
