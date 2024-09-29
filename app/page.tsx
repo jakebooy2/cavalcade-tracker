@@ -1,19 +1,23 @@
 'use client'
 import styles from "../styles/style.module.css";
 import {useEffect, useState} from "react";
+import {cookies} from "next/headers";
+import ThemeToggle from "@/app/theme-toggle";
 
 export default function Page() {
 
     return (
         <div>
-            <div className={styles.scrollingBackgroundContainer}>
+            <div className={`${styles.scrollingBackgroundContainer}`}>
                 <div className={styles.scrollingBackground}></div>
+                <ThemeToggle />
                 <div className={styles.pageContainer}>
                     <div className={styles.container}>
                         <center>
                             <img className={styles.cartoonivalLogo} src="/assets/ttr/cartoonival_logo.png" />
                         </center>
                         <h1 className={styles.pageTitle}>Cavalcade Tracker</h1>
+
                         <CartoonivalTracker />
 
                         <br />
