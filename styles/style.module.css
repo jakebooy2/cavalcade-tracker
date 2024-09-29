@@ -99,6 +99,7 @@
 }
 .scrollingBackgroundContainer .themeSwitcher:hover {
   background: #404ff0;
+  cursor: pointer;
 }
 .scrollingBackgroundContainer .themeSwitcher:hover i {
   color: white;
