@@ -19,12 +19,16 @@
 
 ### Prerequisites
 
-* [Node JS]([https://nodejs.org/)
-* npm
+* [Node JS](https://nodejs.org/)
+* [npm](https://www.npmjs.com/)
   ```sh
   npm install npm@latest -g
   ```
-
+* [pnpm](https://pnpm.io/)
+  ```sh
+  npm install -g pnpm
+  ```
+  
 ### Installation
 
 Setting up the Cavalcade Tracker only takes a few steps:
@@ -32,11 +36,15 @@ Setting up the Cavalcade Tracker only takes a few steps:
    ```sh
    git clone https://github.com/jakebooy2/cavalcade-tracker.git
    ```
-2. Install NPM packages
+2. Navigate to the newly created `cavalcade-tracker` directory
+   ```sh
+   cd cavalcade-tracker/
+   ```
+3. Install NPM packages
    ```sh
    npm install
    ```
-3. To start the website locally on `localhost:3000`, run
+4. To start the website locally on `localhost:3000`, run
    ```sh
    npm run dev
    ```
